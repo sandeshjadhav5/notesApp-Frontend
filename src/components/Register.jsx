@@ -14,7 +14,7 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, Navigate, Redirect } from "react-router-dom";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useEffect } from "react";
@@ -26,6 +26,7 @@ export default function Register() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [age, setAge] = useState("");
+  const [registered, setRegistered] = useState(false);
 
   const handleSubmit = () => {
     const payload = {
@@ -42,7 +43,7 @@ export default function Register() {
         payload
       )
       .then((res) => {
-        console.log(res);
+        setRegistered(true);
       })
       .catch((err) => {
         console.log(err);
@@ -51,13 +52,11 @@ export default function Register() {
 
   useEffect(() => {}, []);
 
+  if (registered) {
+    return <Navigate to="/login" />;
+  }
   return (
-    <Flex
-      minH={"100vh"}
-      align={"center"}
-      justify={"center"}
-      bg={useColorModeValue("gray.50", "gray.800")}
-    >
+    <Flex minH={"100vh"} align={"center"} justify={"center"}>
       <Stack spacing={8} mx={"auto"} maxW={"lg"} py={12} px={6}>
         <Stack align={"center"}>
           <Heading fontSize={"4xl"} textAlign={"center"}>
@@ -67,12 +66,7 @@ export default function Register() {
             for creating notes ✌️
           </Text>
         </Stack>
-        <Box
-          rounded={"lg"}
-          bg={useColorModeValue("white", "gray.700")}
-          boxShadow={"lg"}
-          p={8}
-        >
+        <Box rounded={"lg"} boxShadow={"lg"} p={8}>
           <Stack spacing={4}>
             <HStack>
               <Box>
