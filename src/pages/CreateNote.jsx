@@ -12,10 +12,9 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Link,
 } from "@chakra-ui/react";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 import { useEffect } from "react";
@@ -31,24 +30,6 @@ export default function CreateNote() {
       note,
       category,
     };
-
-    console.log(payload);
-    // axios
-    //   .post(
-    //     `https://better-gold-grasshopper.cyclic.app/notes/create`,
-    //     payload,
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer ${localStorage.getItem("token")}`,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //   });
 
     fetch(`https://better-gold-grasshopper.cyclic.app/notes/create`, {
       method: "POST",
@@ -136,6 +117,12 @@ export default function CreateNote() {
               >
                 Add Note
               </Button>
+              <Link to="/allnotes">
+                <Text fontWeight="semibold" color="#3182CE">
+                  {" "}
+                  Go to Notes
+                </Text>
+              </Link>
             </Stack>
           </Stack>
         </Box>

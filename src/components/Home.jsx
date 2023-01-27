@@ -17,36 +17,27 @@ import {
 } from "@chakra-ui/react";
 
 import { Link } from "react-router-dom";
-import notesLogo from "../svgs/undraw_Taking_notes_re_bnaf.png";
+import notesLogo from "../svgs/threed.png";
 const Home = () => {
-  const textRef = useRef();
-
-  useEffect(() => {
-    init(textRef.current, {
-      showCursor: false,
-      backDelay: 3000,
-      backSpeed: 50,
-      strings: [
-        "Made by Sandesh Jadhav",
-        "Start Creating Notes",
-        "Full Stack App",
-      ],
-    });
-  }, []);
   return (
-    <div>
-      <Heading mt="10" textAlign="center" color="purple">
+    <Box
+      w={"full"}
+      h={"100vh"}
+      backgroundImage={
+        "url(https://images.unsplash.com/photo-1527345931282-806d3b11967f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80)"
+      }
+      backgroundSize={"cover"}
+      backgroundPosition={"center center"}
+    >
+      <Heading textAlign="center" color="#4299E1">
         Notes App
       </Heading>
-
       <SimpleGrid minChildWidth="420px">
-        <Box>
-          <Image m="auto" src={notesLogo} />
-        </Box>
+        <Box></Box>
         <Box mt="20">
           <Box m="10">
             <Link to="/register">
-              <Button colorScheme="green" variant="solid">
+              <Button colorScheme="teal" variant="solid">
                 Register Yourself & Get Started
               </Button>
             </Link>
@@ -60,22 +51,7 @@ const Home = () => {
           </Box>
         </Box>
       </SimpleGrid>
-      <Text
-        m="auto"
-        color="#4A5568"
-        fontWeight="semibold"
-        fontSize={{
-          xl: "25",
-          lg: "25",
-          md: "25",
-          sm: "20",
-          base: "15",
-        }}
-        textAlign={{ sm: "center", md: "center", base: "center" }}
-      >
-        <span style={{ color: "#E53E3E" }} ref={textRef}></span>
-      </Text>
-    </div>
+    </Box>
   );
 };
 

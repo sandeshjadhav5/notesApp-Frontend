@@ -13,7 +13,7 @@ import {
   useColorMode,
   Icon,
 } from "@chakra-ui/react";
-
+import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 const Notes = () => {
   const [data, setData] = useState([]);
@@ -38,7 +38,7 @@ const Notes = () => {
   }, []);
   console.log(data);
   return (
-    <div>
+    <Box>
       <Flex w="95%" m="auto" mb="10">
         <Heading ml="20" w="100%">
           Notes
@@ -60,10 +60,25 @@ const Notes = () => {
         {data ? (
           data.map((el) => {
             return (
-              <Box key={el._id} borderColor="red" border="2px">
-                <Text>Title : {el.title}</Text>
-                <Text>Category:{el.category}</Text>
-                <Text>Note : {el.note}</Text>
+              <Box
+                key={el._id}
+                borderColor="red"
+                border="1px"
+                borderRadius={10}
+                boxShadow="xl"
+                bg={mode ? "#f7fafc" : "#A0AEC0"}
+                p="6"
+                rounded="md"
+              >
+                <Text textAlign="left" color="#D53F8C" fontWeight="semibold">
+                  Title : {el.title}
+                </Text>
+                <Text textAlign="left" color="#805AD5" fontWeight="semibold">
+                  Category : {el.category}
+                </Text>
+                <Text textAlign="left" fontWeight="semibold">
+                  Note : {el.note}
+                </Text>
               </Box>
             );
           })
@@ -71,7 +86,12 @@ const Notes = () => {
           <h1>No Notes</h1>
         )}
       </SimpleGrid>
-    </div>
+      <Link to="/createnote">
+        <Button bg="#38A169" mt="5">
+          Create a Note
+        </Button>
+      </Link>
+    </Box>
   );
 };
 
